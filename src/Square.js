@@ -30,10 +30,12 @@ class Square extends Component {
   	}
 
   	_handelNoteClick(){
+  		//if condition to validate only one click is getting counted
   		if(!this.state.clicked){
 	  		console.log("hello at square");
 	  		this.setState({clicked:true});
 	  		this.props.changeScore();
+	  		this.props.diamondCollected();
 	  	}
 	  	else{
 	  		console.log("dont click me again");

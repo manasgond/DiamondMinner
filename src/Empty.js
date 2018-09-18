@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Diamond from './Assests/images/diamond.png';
 import Note from './Assests/images/notes.png';
 import Empty from './Assests/images/empty.png';
-import {font, width,height} from './Parameter';
+import {font, width,height} from './Parameter';// setting global style set
 
 class EmptyBox extends Component {
 	constructor(props){
@@ -32,6 +32,7 @@ class EmptyBox extends Component {
   	}
 
   	_handelNoteClick(){
+  		//if condition to validate only one click is getting counted
   		if(!this.state.clicked){
 	  		console.log("hello at empty");
 	  		this.setState({clicked:true});

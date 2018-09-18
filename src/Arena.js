@@ -11,17 +11,18 @@ class Arena extends Component {
 			totalNumber:[],
 		}
 		this.updateScoreCard=this.updateScoreCard.bind(this);
+		this.diamondCollected=this.diamondCollected.bind(this);
 
 
 	}
 	componentDidMount(){
+		// calling the function to generate 8 random number
 		this.randomization();
 	}
 
  	render() {
  		var totalNumber =this.state.totalNumber;
  		var luckyNumberArr =this.state.luckyNumberArr;
-
 	    return (
 	      	<div style={{display:'flex',flexDirection:'row',width:width*0.44,flexWrap: 'wrap'}}>
 	      		{
@@ -29,9 +30,11 @@ class Arena extends Component {
 	      				return(
 	      					<div>
 		      					{
+		      						//if true then will show diamond else blank box
 				      				(luckyNumberArr.indexOf(totalNumber) > -1) ?
 				      				<div>
-							    		<Square  changeScore={this.updateScoreCard} />
+							    		<Square  changeScore={this.updateScoreCard} diamondCollected={this.diamondCollected}/>
+							    		
 							    	</div>
 							      
 							      	:
@@ -49,13 +52,19 @@ class Arena extends Component {
 	    );
   	}
   	updateScoreCard(){
-  		console.log("second called");
+  		//case of upward binding mean child to parents
+  		//console.log("second called");
   		this.props.updateScore();
+  	}
+  	diamondCollected(){
+  			//case of upward binding mean child to parents
+  		this.props.diamondCollected();
   	}
 
   	randomization(){
   		var luckyNumberArr =[];
   		var totalNumber = [];
+  		//iterating till 8 because we need only 8 diamond
   		for (let i =0; i<8;i++){
   			var randomNumber = Math.ceil(64*Math.random());
   			if(luckyNumberArr.includes(randomNumber)){
@@ -69,6 +78,12 @@ class Arena extends Component {
   		for(let i=0;i<64;i++){
   			totalNumber.push(i);
   		}
+  		//there are the cases when the random no generated
+  		//are less than 8 then refresh the browzer
+  		if(luckyNumberArr.length<8){
+ 			window.location.reload();
+
+ 		}
   		this.setState({luckyNumberArr:luckyNumberArr, totalNumber:totalNumber});
   	}
 }
