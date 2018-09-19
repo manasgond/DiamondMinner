@@ -25,7 +25,7 @@ class App extends Component {
             {
               (this.state.diamondCollected === 8 && this.state.score !== 0)?
               <div style={pageStyle.success}>
-                {"Hurray!!! You won the game. You score"+this.state.score}
+                {"Hurray!!! You won the game. You score is "+this.state.score }
               </div>
               :
               null
